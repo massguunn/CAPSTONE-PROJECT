@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "regenerator-runtime": "^0.14.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
