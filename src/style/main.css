@@ -361,8 +361,8 @@ body {
 }
 
 /* Footer */
-footer {
-  padding: 20px;
+.footer-pembungkus {
+  padding: 15px;
   background-color: #007bff;
   color: white;
   text-align: center;
@@ -370,10 +370,10 @@ footer {
 }
 
 .footer__social {
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 20px;
 }
 
 .footer__social a {
@@ -393,6 +393,13 @@ footer {
   text-decoration: none;
 }
 
-footer p {
+.footer-deskripsi {
+  padding: 5px;
+  background-color: black;
+  width: 100%;
+}
+.footer-deskripsi p {
+  color: white;
   font-size: 0.875rem;
+  text-align: center;
 }
