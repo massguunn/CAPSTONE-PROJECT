@@ -1,13 +1,12 @@
 import "regenerator-runtime";
-// import '../styles/style.css';
-// import '../styles/responsive.css';
+import "../style/main.css";
+import "../style/resvonsif.css";
 import App from "./views/app";
-// import swRegister from './utils/sw-register';
 
 const app = new App({
   button: document.querySelector("#hamburgerButton"),
   drawer: document.querySelector("#navigationDrawer"),
-  content: document.querySelector("#mainContent"),
+  content: document.querySelector("#main-content"),
 });
 
 window.addEventListener("hashchange", () => {
@@ -16,5 +15,4 @@ window.addEventListener("hashchange", () => {
 
 window.addEventListener("load", () => {
   app.renderPage();
-  //   swRegister();
 });
