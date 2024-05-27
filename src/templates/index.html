@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trigunar Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    <link rel="stylesheet" href="/src/style/main.css">
+    <link rel="stylesheet" href="../style/main.css">
 </head>
 
 <body>
@@ -15,28 +16,22 @@
             <button id="hamburgerButton">☰</button>
         </div>
         <div class="app-bar__title">
-            <h1><a href="">Trigunar</a></h1>
+            <h1><a href="#">Trigunar</a></h1>
         </div>
         <nav id="navigationDrawer" class="app-bar__navigation">
             <ul>
-                <li><a href="#/Home">Home</a></li>
-                <li><a href="">Tri Kota</a></li>
-                <li><a href="">Paket Wisata</a></li>
-                <li><a href="">Tentang Kita</a></li>
-                <li><a href="">Login</a></li>
-
+                <li><a href="#home">Tri Kota</a></li>
+                <li><a href="#paket-wisata">Paket Wisata</a></li>
+                <li><a href="#tentang-kita">Tentang Kita</a></li>
+                <li><a href="#login">Login</a></li>
             </ul>
         </nav>
     </header>
 
     <div id="hero" class="hero">
-        <div class="hero__img"></div>
-
         <div class="hero__title">
-            <h1>
-                Jelajah Keindahan Panorama dengan Trigunar.
-            </h1>
-            <!-- <a href="#main-content">Lihat Restoran</a> -->
+            <h1>Jelajah Keindahan Panorama dengan Trigunar.</h1>
+            <button class="cta-button">Daftar Kota</button>
         </div>
     </div>
 
@@ -45,36 +40,168 @@
             <h2>NEW SPOT</h2>
             <div class="main-content__new-spot__list-card">
                 <div class="destination-card">
-                    <h3>TITLE DESTINATION</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, at?</p>
+                    <img src="../public/Lombok/desa-sade-1.jpeg" alt="Desa Sade" />
+                    <h3>Desa Sade</h3>
+                    <p>Destinasi</p>
                 </div>
                 <div class="destination-card">
-                    <h3>TITLE DESTINATION 2</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, at?</p>
+                    <img src="../public/Lombok/gili-trawangan-1.jpg" alt="gili trawangan" />
+                    <h3>Gili Trawangan</h3>
+                    <p>Destinasi</p>
                 </div>
                 <div class="destination-card">
-                    <h3>TITLE DESTINATION3 </h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, at?</p>
+                    <img src="../public/Lombok/sembalun-1.jpg" alt="" />
+                    <h3>Sembalun</h3>
+                    <p>Destinasi</p>
                 </div>
                 <div class="destination-card">
-                    <h3>TITLE DESTINATION4 </h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, at?</p>
+                    <img src="../public/Lombok/pantai-kuta-1.jpeg" alt="Pantai Kura Kura" />
+                    <h3>Pantai Kuta</h3>
+                    <p>Destinasi</p>
+                </div>
+                <div class="destination-card">
+                    <img src="../public/Lombok/senggigi-2.jpg" alt="Pantai sengigi" />
+                    <h3>Pantai Sengigi</h3>
+                    <p>Destinasi</p>
+                </div>
+                <div class="destination-card">
+                    <img src="../public/images/hero.png" alt="Mojo Savanna" />
+                    <h3>Mojo Savanna</h3>
+                    <p>Destinasi</p>
                 </div>
             </div>
         </section>
 
         <section id="event" class="event">
-            <h2>EVENT</h2>
+            <h2><i class="fas fa-calendar-alt"></i> EVENT</h2>
+            <div class="event__carousel">
+                <button class="carousel__button carousel__button--left" aria-label="Previous">
+                    <span>&lt;</span>
+                </button>
+                <div class="pembungkus-event">
+                    <div class="carousel__track-container">
+                        <ul class="carousel__track">
+                            <li class="carousel__slide">
+                                <h3>Juni</h3>
+                                <div class="event__item">
+                                    <div class="event__date">14</div>
+                                    <div class="event__description">
+                                        MotoGP Mandalika<br />Lombok
+                                    </div>
+                                </div>
+                                <div class="event__item">
+                                    <div class="event__date">18</div>
+                                    <div class="event__description">
+                                        Wayangan Alun-Alun<br />Banyumas
+                                    </div>
+                                </div>
+                                <div class="event__item">
+                                    <div class="event__date">23</div>
+                                    <div class="event__description">
+                                        Festival Dayung Sungai<br />Batanghari Jambi
+                                    </div>
+                                </div>
+                                <h3>Juli</h3>
+                                <div class="event__item">
+                                    <div class="event__date">10</div>
+                                    <div class="event__description">Bau Nyale<br />Lombok</div>
+                                </div>
+                                <div class="event__item">
+                                    <div class="event__date">18</div>
+                                    <div class="event__description">
+                                        Festival Makanan Rita Mall<br />Banyumas
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="carousel__track-container">
+                        <ul class="carousel__track">
+                            <li class="carousel__slide">
+                                <h3>Juni</h3>
+                                <div class="event__item">
+                                    <div class="event__date">14</div>
+                                    <div class="event__description">
+                                        MotoGP Mandalika<br />Lombok
+                                    </div>
+                                </div>
+                                <div class="event__item">
+                                    <div class="event__date">18</div>
+                                    <div class="event__description">
+                                        Wayangan Alun-Alun<br />Banyumas
+                                    </div>
+                                </div>
+                                <div class="event__item">
+                                    <div class="event__date">23</div>
+                                    <div class="event__description">
+                                        Festival Dayung Sungai<br />Batanghari Jambi
+                                    </div>
+                                </div>
+                                <h3>Juli</h3>
+                                <div class="event__item">
+                                    <div class="event__date">10</div>
+                                    <div class="event__description">Bau Nyale<br />Lombok</div>
+                                </div>
+                                <div class="event__item">
+                                    <div class="event__date">18</div>
+                                    <div class="event__description">
+                                        Festival Makanan Rita Mall<br />Banyumas
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="carousel__button carousel__button--right" aria-label="Next">
+                    <span>&gt;</span>
+                </button>
+            </div>
+            <div class="carousel__nav">
+                <button class="carousel__indicator current-slide"></button>
+                <button class="carousel__indicator"></button>
+            </div>
+        </section>
+
+        <!-- Promo Section -->
+        <section id="promo" class="promo">
+            <div class="promo__content">
+                <div class="promo__text">
+                    <h2>Promo 50%</h2>
+                    <p class="promo__countdown">3 <span>hari</span> : 12 <span>jam</span> : 47 <span>menit</span></p>
+                    <p>Mojo Savanna merupakan lorem ipsum dolor sit amet consectetur. Feugiat bibendum varius nunc
+                        tellus amet at laoreet. Nam tristique egestas quam praesent quis.</p>
+                </div>
+                <div class="promo__card">
+                    <img src="../public/Lombok/desa-sade.jpeg" alt="Mojo Savanna">
+                    <div class="promo__card-details">
+                        <h3>Destinasi</h3>
+                        <h4>Desa Sade</h4>
+                        <p class="promo__card-price"><del>Rp.1.000.000,-</del> <span>Rp.300.000,-</span></p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-
+        <div class="footer-pembungkus">
+            <div class="footer__social">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="footer__links">
+                <a href="#">About</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Our Team</a>
+            </div>
+        </div>
+        <div class="footer-deskripsi">
+            <p>Trigunar Travel © All RIGHTS RESERVED</p>
+        </div>
     </footer>
-
-
-    <!-- <script src="/src/scripts/index.js"></script> -->
-
 </body>
 
 </html>
