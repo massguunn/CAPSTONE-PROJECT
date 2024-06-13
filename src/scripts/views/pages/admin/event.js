@@ -1,11 +1,11 @@
-const admin = {
+const event_admin = {
   async render() {
     return `
         <main>
           <div class="main-content">
               <aside>
                   <ul>
-                      <li>home</li>
+                      <li><a href="index.html">Home</a></li>
                       <span></span>
                       <li>user</li>
                       <li><a href="event.html">Event</a></li>
@@ -18,10 +18,10 @@ const admin = {
               <div class="content-dasboard">
                   <section class="form-section">
                       <h2>Tambahkan data & Edit data</h2>
-                      <form id="package-form" enctype="multipart/form-data">
+                      <form id="package-form-event" enctype="multipart/form-data">
                           <div class="form-group">
-                              <label for="name">Name</label>
-                              <input type="text" id="name" name="name" required>
+                              <label for="title">Name</label>
+                              <input type="text" id="title" name="title" required>
                           </div>
                           <div class="form-group">
                               <label for="description">Description</label>
@@ -36,23 +36,27 @@ const admin = {
                               <input type="text" id="city" name="city" required>
                           </div>
                           <div class="form-group">
-                              <label for="rating">Rating</label>
-                              <input type="number" id="rating" name="rating" step="0.01" required>
-                          </div>
-                          <div class="form-group">
                               <label for="price">Price</label>
                               <input type="number" id="price" name="price" required>
                           </div>
                           <div class="form-group">
-                              <label for="image_url">Gambar</label>
-                              <input id="image_url" name="image_url" type="file" required>
+                              <label for="start_date">Start Date</label>
+                              <input type="date" id="start_date" name="start_date" required>
                           </div>
-                          <button class="submit" type="submit">Save</button>
+                          <div class="form-group">
+                              <label for="end_date">End Date</label>
+                              <input type="date" id="end_date" name="end_date" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="image">Gambar</label>
+                              <input id="image" name="image" type="file" required>
+                          </div>
+                          <button type="submit">Save</button>
                       </form>
                   </section>
   
                   <section class="table-section">
-                      <h2>Destination</h2>
+                      <h2>Event</h2>
                       <table>
                           <thead>
                               <tr>
@@ -60,48 +64,56 @@ const admin = {
                                   <th>Description</th>
                                   <th>Location</th>
                                   <th>City</th>
-                                  <th>Rating</th>
                                   <th>Price</th>
-                                  <th>Img</th>
+                                  <th>Start Date</th>
+                                  <th>End Date</th>
+                                  <th>Gambar</th>
                                   <th>Actions</th>
                               </tr>
                           </thead>
-                          <tbody id="package-list">
-                              <!-- Travel packages will be populated here -->
+                          <tbody id="package-list-event">
+                              <!-- Event packages will be populated here -->
                           </tbody>
                       </table>
                   </section>
               </div>
           </div>
-        </main>
+      </main>
       `;
   },
 
   async afterRender() {
-    const packageForm = document.getElementById("package-form");
-    const packageList = document.getElementById("package-list");
+    const packageForm = document.getElementById("package-form-event");
+    const packageList = document.getElementById("package-list-event");
     let editingPackageId = null;
 
-    // Ambil data dari server
+    // Fetch data from server
     async function fetchPackages() {
       try {
-        const response = await fetch("http://localhost:3000/destinations");
-        const destinations = await response.json();
+        const response = await fetch("http://localhost:3000/events");
+        const events = await response.json();
         packageList.innerHTML = "";
-        destinations.forEach((pkg) => {
+        events.forEach((pkg) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-              <td>${pkg.name}</td>
-              <td>${pkg.description}</td>
-              <td>${pkg.location}</td>
-              <td>${pkg.city}</td>
-              <td>${pkg.rating}</td>
-              <td>${pkg.price}</td>
-              <td><img src="${pkg.image_url}" alt="${pkg.image_url}" width="100"></td>
-              <td class="action">
-                <button class="edit" onclick="editPackage(${pkg.id})">Edit</button>
-                <button class="delete" onclick="deletePackage(${pkg.id})">Delete</button>
-              </td>
+                  <td>${pkg.title}</td>
+                  <td>${pkg.description}</td>
+                  <td>${pkg.location}</td>
+                  <td>${pkg.city}</td>
+                  <td>${pkg.price}</td>
+                  <td>${pkg.start_date.split("T")[0]}</td>
+                  <td>${pkg.end_date.split("T")[0]}</td>
+                  <td><img src="${pkg.image}" alt="${
+            pkg.image
+          }" width="100"></td>
+                  <td class="action">
+                      <button class="edit" onclick="editPackage(${
+                        pkg.id
+                      })">Edit</button>
+                      <button class="delete" onclick="deletePackage(${
+                        pkg.id
+                      })">Delete</button>
+                </td>
             `;
           packageList.appendChild(row);
         });
@@ -110,15 +122,15 @@ const admin = {
       }
     }
 
-    // Tambahkan atau update data
+    // Add or update data
     packageForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const formData = new FormData(packageForm);
       const method = editingPackageId ? "PUT" : "POST";
       const url = editingPackageId
-        ? `http://localhost:3000/destinations/${editingPackageId}`
-        : "http://localhost:3000/destinations";
+        ? `http://localhost:3000/events/${editingPackageId}`
+        : "http://localhost:3000/events";
 
       try {
         const response = await fetch(url, {
@@ -141,44 +153,35 @@ const admin = {
     // Edit package
     window.editPackage = async (id) => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/destinations/${id}`
-        );
+        const response = await fetch(`http://localhost:3000/events/${id}`);
         const pkg = await response.json();
-        document.getElementById("name").value = pkg.name;
+
+        document.getElementById("title").value = pkg.title;
         document.getElementById("description").value = pkg.description;
         document.getElementById("location").value = pkg.location;
         document.getElementById("city").value = pkg.city;
-        document.getElementById("rating").value = pkg.rating;
         document.getElementById("price").value = pkg.price;
+        document.getElementById("start_date").value =
+          pkg.start_date.split("T")[0];
+        document.getElementById("end_date").value = pkg.end_date.split("T")[0];
+        document.getElementById("image").value = "";
 
-        if (pkg.image_url.startsWith("http")) {
-          document.getElementById("image_url").value = "";
-        } else {
-          document.getElementById("image_url").value = pkg.image_url;
-        }
         editingPackageId = id;
       } catch (error) {
         console.error("Error editing package:", error);
       }
     };
 
-    // Hapus package
+    // Delete package
     window.deletePackage = async (id) => {
       const isConfirmed = window.confirm(
-        "Apakah Anda yakin ingin menghapus destinasi ini?"
+        "Apakah anda yakin ingin menghapus Event ini?"
       );
       if (isConfirmed) {
         try {
-          const response = await fetch(
-            `http://localhost:3000/destinations/${id}`,
-            {
-              method: "DELETE",
-            }
-          );
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
+          await fetch(`http://localhost:3000/events/${id}`, {
+            method: "DELETE",
+          });
           fetchPackages();
         } catch (error) {
           console.error("Error deleting package:", error);
@@ -190,4 +193,4 @@ const admin = {
   },
 };
 
-export default admin;
+export default event_admin;

@@ -5,12 +5,19 @@ const lombok = {
         "http://localhost:3000/destinations"
       );
       const destinations = await responseDestinations.json();
+      const lombokDestinations = destinations.filter(
+        (destination) => destination.city === "Lombok"
+      );
 
       const responseEvents = await fetch("http://localhost:3000/events");
       const events = await responseEvents.json();
+      const lombokEvents = events.filter((event) => event.city === "Lombok");
 
       const responseKuliners = await fetch("http://localhost:3000/kuliners");
       const kuliners = await responseKuliners.json();
+      const lombokKuliner = kuliners.filter(
+        (kuliner) => kuliner.city === "Lombok"
+      );
 
       return `
         <h1 class="kota">Lombok</h1>
@@ -19,7 +26,7 @@ const lombok = {
         <h2 class="title">Wisata</h2>
         <div class="wisata">
           <div class="container-wisata">
-            ${destinations
+            ${lombokDestinations
               .map(
                 (destination) => `
               <div class="image-wisata">
@@ -41,7 +48,7 @@ const lombok = {
         <h2 class="title">Kuliner</h2>
         <div class="wisata">
           <div class="container-wisata">
-            ${kuliners
+            ${lombokKuliner
               .map(
                 (kuliner) => `
               <div class="image-wisata">
@@ -62,7 +69,7 @@ const lombok = {
         <h2 class="title">Event</h2>
         <div class="wisata">
           <div class="container-wisata">
-            ${events
+            ${lombokEvents
               .map(
                 (event) => `
               <div class="image-wisata">

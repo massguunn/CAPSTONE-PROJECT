@@ -10,13 +10,13 @@ const app = new App({
 });
 
 function updateHeaderVisibility() {
-  const header = document.querySelector('.app-bar');
+  const header = document.querySelector(".app-bar");
   const currentHash = window.location.hash;
 
-  if (currentHash === '#/signup') {
-    header.style.display = 'none';
+  if (currentHash === "#/signup") {
+    header.style.display = "none";
   } else {
-    header.style.display = 'flex';
+    header.style.display = "flex";
   }
 }
 

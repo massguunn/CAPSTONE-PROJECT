@@ -1,24 +1,23 @@
-const admin = {
+const kuliner_admin = {
   async render() {
     return `
-        <main>
+       <main>
           <div class="main-content">
               <aside>
                   <ul>
-                      <li>home</li>
-                      <span></span>
+                      <li><a href="index.html">Home</a></li>
                       <li>user</li>
                       <li><a href="event.html">Event</a></li>
                       <li>destination</li>
                       <li>Tri Kota</li>
-                      <li><a href="kuliner.html">Kuliner</a></li>
+                      <li>kuliner</li>
                   </ul>
               </aside>
   
               <div class="content-dasboard">
                   <section class="form-section">
                       <h2>Tambahkan data & Edit data</h2>
-                      <form id="package-form" enctype="multipart/form-data">
+                      <form id="package-form-kuliner" enctype="multipart/form-data">
                           <div class="form-group">
                               <label for="name">Name</label>
                               <input type="text" id="name" name="name" required>
@@ -36,23 +35,24 @@ const admin = {
                               <input type="text" id="city" name="city" required>
                           </div>
                           <div class="form-group">
-                              <label for="rating">Rating</label>
-                              <input type="number" id="rating" name="rating" step="0.01" required>
-                          </div>
-                          <div class="form-group">
                               <label for="price">Price</label>
                               <input type="number" id="price" name="price" required>
                           </div>
                           <div class="form-group">
-                              <label for="image_url">Gambar</label>
-                              <input id="image_url" name="image_url" type="file" required>
+                              <label for="rating">Rating</label>
+                              <input type="number" id="rating" name="rating" required>
                           </div>
-                          <button class="submit" type="submit">Save</button>
+  
+                          <div class="form-group">
+                              <label for="image">Gambar</label>
+                              <input id="image" name="image" type="file" required>
+                          </div>
+                          <button type="submit">Save</button>
                       </form>
                   </section>
   
                   <section class="table-section">
-                      <h2>Destination</h2>
+                      <h2>Kuliner</h2>
                       <table>
                           <thead>
                               <tr>
@@ -62,33 +62,33 @@ const admin = {
                                   <th>City</th>
                                   <th>Rating</th>
                                   <th>Price</th>
-                                  <th>Img</th>
+                                  <th>Gambar</th>
                                   <th>Actions</th>
                               </tr>
                           </thead>
-                          <tbody id="package-list">
+                          <tbody id="package-list-kuliner">
                               <!-- Travel packages will be populated here -->
                           </tbody>
                       </table>
                   </section>
               </div>
           </div>
-        </main>
+      </main>
       `;
   },
 
   async afterRender() {
-    const packageForm = document.getElementById("package-form");
-    const packageList = document.getElementById("package-list");
+    const packageForm = document.getElementById("package-form-kuliner");
+    const packageList = document.getElementById("package-list-kuliner");
     let editingPackageId = null;
 
     // Ambil data dari server
     async function fetchPackages() {
       try {
-        const response = await fetch("http://localhost:3000/destinations");
-        const destinations = await response.json();
+        const response = await fetch("http://localhost:3000/kuliners");
+        const kuliners = await response.json();
         packageList.innerHTML = "";
-        destinations.forEach((pkg) => {
+        kuliners.forEach((pkg) => {
           const row = document.createElement("tr");
           row.innerHTML = `
               <td>${pkg.name}</td>
@@ -97,7 +97,7 @@ const admin = {
               <td>${pkg.city}</td>
               <td>${pkg.rating}</td>
               <td>${pkg.price}</td>
-              <td><img src="${pkg.image_url}" alt="${pkg.image_url}" width="100"></td>
+              <td><img src="${pkg.image}" alt="${pkg.image}" width="100"></td>
               <td class="action">
                 <button class="edit" onclick="editPackage(${pkg.id})">Edit</button>
                 <button class="delete" onclick="deletePackage(${pkg.id})">Delete</button>
@@ -117,8 +117,8 @@ const admin = {
       const formData = new FormData(packageForm);
       const method = editingPackageId ? "PUT" : "POST";
       const url = editingPackageId
-        ? `http://localhost:3000/destinations/${editingPackageId}`
-        : "http://localhost:3000/destinations";
+        ? `http://localhost:3000/kuliners/${editingPackageId}`
+        : "http://localhost:3000/kuliners";
 
       try {
         const response = await fetch(url, {
@@ -141,10 +141,9 @@ const admin = {
     // Edit package
     window.editPackage = async (id) => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/destinations/${id}`
-        );
+        const response = await fetch(`http://localhost:3000/kuliners/${id}`);
         const pkg = await response.json();
+
         document.getElementById("name").value = pkg.name;
         document.getElementById("description").value = pkg.description;
         document.getElementById("location").value = pkg.location;
@@ -152,11 +151,9 @@ const admin = {
         document.getElementById("rating").value = pkg.rating;
         document.getElementById("price").value = pkg.price;
 
-        if (pkg.image_url.startsWith("http")) {
-          document.getElementById("image_url").value = "";
-        } else {
-          document.getElementById("image_url").value = pkg.image_url;
-        }
+        // Kosongkan input file
+        document.getElementById("image").value = "";
+
         editingPackageId = id;
       } catch (error) {
         console.error("Error editing package:", error);
@@ -166,16 +163,13 @@ const admin = {
     // Hapus package
     window.deletePackage = async (id) => {
       const isConfirmed = window.confirm(
-        "Apakah Anda yakin ingin menghapus destinasi ini?"
+        "Apakah Anda yakin ingin menghapus kuliner ini?"
       );
       if (isConfirmed) {
         try {
-          const response = await fetch(
-            `http://localhost:3000/destinations/${id}`,
-            {
-              method: "DELETE",
-            }
-          );
+          const response = await fetch(`http://localhost:3000/kuliners/${id}`, {
+            method: "DELETE",
+          });
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
@@ -190,4 +184,4 @@ const admin = {
   },
 };
 
-export default admin;
+export default kuliner_admin;

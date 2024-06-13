@@ -10,6 +10,9 @@ import detail from "../views/pages/detail-wisata";
 import signup from "../views/pages/signup";
 import kuliner from "../views/pages/detail-kuliner";
 import event from "../views/pages/detail-event";
+import admin from "../views/pages/admin/index";
+import event_admin from "../views/pages/admin/event";
+import kuliner_admin from "../views/pages/admin/kuliner";
 
 const routes = {
   "/": home,
@@ -23,8 +26,11 @@ const routes = {
   "/banyumas": banyumas,
   "/detail/:id": detail,
   "/kuliner/:id": kuliner,
-  "/event/:id": event, // Perhatikan penulisan '/detailKuliner/:id'
+  "/event/:id": event,
   "/signup": signup,
+  "/admin": admin,
+  "/event_admin": event_admin,
+  "/kuliner_admin": kuliner_admin,
 };
 
 export default routes;
