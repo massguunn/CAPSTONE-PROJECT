@@ -29,7 +29,7 @@ const lombok = {
                   }" alt="${destination.name}" />
                 </a>
                 <h3>${destination.name}</h3>
-                <p>${destination.description}</p>
+                <p tabindex="0">${destination.description.slice(0, 150)}...</p>
                 <div class="rating">Rating: ${destination.rating}</div>
               </div>
             `
