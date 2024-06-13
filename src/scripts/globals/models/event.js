@@ -19,6 +19,9 @@ const events = sequelize.define(
     location: {
       type: DataTypes.STRING,
     },
+    city: {
+      type: DataTypes.STRING,
+    },
     price: {
       type: DataTypes.NUMBER,
     },

@@ -6,8 +6,9 @@ import home from "../views/pages/home";
 import jambi from "../views/pages/jambi";
 import lombok from "../views/pages/lombok";
 import banyumas from "../views/pages/banyumas";
-import detail from "../views/pages/detail";
+import detail from "../views/pages/detail-wisata";
 import signup from "../views/pages/signup";
+import detailKuliner from "../views/pages/detail-kuliner";
 
 const routes = {
   "/": home,
@@ -19,7 +20,8 @@ const routes = {
   "/jambi": jambi,
   "/lombok": lombok,
   "/banyumas": banyumas,
-  "/detail": detail,
+  "/detail/:id": detail,
+  "/detailKuliner/:id": detailKuliner, // Perhatikan penulisan '/detailKuliner/:id'
   "/signup": signup,
 };
 

@@ -224,7 +224,7 @@ const home = {
       },
       breakpoints: {
         // min-width
-        '480': {
+        480: {
           slidesPerView: 2,
           spaceBetween: 5,
           slidesPerGroup: 1,
