@@ -45,10 +45,9 @@ const lombok = {
               .map(
                 (kuliner) => `
               <div class="image-wisata">
-               <a href="#/detailKuliner/${kuliner.id}">
-                  <img src="${kuliner.image || "./default-image.jpg"}" alt="${
-                  kuliner.name
-                }" />
+               <a href="#/kuliner/${kuliner.id}">
+                  <img src="${kuliner.image || "./default-image.jpg"}"
+                   alt="${kuliner.name}" />
                 </a>
                 <h3>${kuliner.name}</h3>
                 <p>${kuliner.description}</p>
@@ -67,9 +66,10 @@ const lombok = {
               .map(
                 (event) => `
               <div class="image-wisata">
-                <img src="${event.image || "./default-image.jpg"}" alt="${
-                  event.name
-                }" />
+                <a href="#/event/${event.id}">
+                  <img src="${event.image || "./default-image.jpg"}"
+                   alt="${event.title}" />
+                </a>
                 <h3>${event.title}</h3>
                 <p>${event.description}</p>
                 <div class="price">RP. ${event.price}</div>

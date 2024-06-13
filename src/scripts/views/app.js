@@ -1,3 +1,4 @@
+// app.js
 import DrawerInitiator from "../utils/drawer-inisiator";
 import UrlParser from "../routes/url-parser";
 import routes from "../routes/routes";

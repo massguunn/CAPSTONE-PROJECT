@@ -19,6 +19,10 @@ const destinations = sequelize.define(
     location: {
       type: DataTypes.STRING,
     },
+    city: {
+      type: DataTypes.STRING,
+    },
+
     rating: {
       type: DataTypes.FLOAT,
     },
