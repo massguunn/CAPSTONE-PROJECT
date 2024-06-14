@@ -189,7 +189,14 @@ const admin = {
     };
 
     fetchPackages();
+
+
+    const header = document.querySelector('.app-bar');
+    if (header) {
+      header.style.display = 'none';
+    }
   },
+
 };
 
 export default admin;

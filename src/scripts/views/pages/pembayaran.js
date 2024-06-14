@@ -1,4 +1,4 @@
-const login = {
+const pembayaran = {
     async render() {
         return `
     <section class="login-image">
@@ -27,4 +27,4 @@ const login = {
     async afterRender() { },
 };
 
-export default login;
+export default pembayaran;
